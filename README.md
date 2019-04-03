@@ -27,7 +27,7 @@ nano ./log.edn
 
 ### Etymology 
 
-In The Sims, `rosebud` is a money cheat that gives an additional §1,000.
+In [The Sims][thesims], `rosebud` is a money cheat that gives an additional §1,000.
 
 [localgrafana]: http://localhost:3000
 [thesims]: https://www.ea.com/games/the-sims
