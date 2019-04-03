@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd .. && pwd)"
+source "${ROOT}/scripts/core.sh"
+
+warning "Starting containers..."
+
+cd "$ROOT"
+docker-compose up -d
+
+success "Containers started!"

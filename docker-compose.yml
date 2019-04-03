@@ -1,0 +1,43 @@
+version: "3"
+services:
+  grafana:
+    image: grafana/grafana:5.4.3
+    container_name: grafana
+    restart: always
+    ports:
+      - 3000:3000
+    networks:
+      - grafana-net
+    volumes:
+      - $PWD/grafana/provisioning:/etc/grafana/provisioning
+      - $PWD/grafana/config.ini:/etc/grafana/config.ini
+      - $PWD/grafana/dashboards:/var/lib/grafana/dashboards
+    environment:
+      - GF_INSTALL_PLUGINS=grafana-simple-json-datasource
+      - GF_SECURITY_ADMIN_PASSWORD=admin123
+
+  graphite:
+    image: graphiteapp/graphite-statsd
+    container_name: graphite
+    restart: always
+    ports:
+      - 80:80
+      - 2003-2004:2003-2004
+      - 2023-2024:2023-2024
+      - 8125:8125/udp
+      - 8126:8126
+    networks:
+      - grafana-net
+
+  server:
+    image: denisidoro/rosebud:latest
+    container_name: server
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - grafana-net
+    working_dir: /app
+
+networks:
+  grafana-net:

@@ -1,0 +1,92 @@
+{
+
+:currency/track
+#{:usd :eur}
+
+:stock/track
+#{:aapl34.sa :gogl34.sa}
+
+:investment/cdb #{
+  ;; id                parent             amount   t0                      tf     final     rate
+  [:cdb/paribas        :citigroup/rf     1000.00   "2016-05-11"  "2018-05-04"   1227.88   118.00]
+  [:cdb/hsbc           :citigroup/rf     1000.00   "2016-07-25"  "2018-07-20"   1242.00   116.00]
+  [:cdb/hsbc2          :citigroup/rf     1000.00   "2018-10-05"  "2020-09-29"       nil   124.00]
+}
+
+:investment/lc #{
+  ;; id                parent             amount   t0                      tf     final     rate
+  [:lc/jpmorgan        :citigroup/rf      602.74   "2018-07-24"  "2020-09-28"       nil   124.00]
+}
+
+:investment/lci #{
+  ;; id                parent             amount   t0                      tf     final     rate
+  [:lci/ufj            :citigroup/rf     1000.00   "2017-08-08"  "2018-05-28"   1050.13    89.50]
+  [:lci/ufj2           :citigroup/rf     2000.00   "2019-01-03"  "2019-12-30"       nil    99.00]
+}
+
+:investment/lca #{
+  ;; id                parent             amount   t0                      tf     final     rate
+  [:lca/bac            :citigroup/rf      500.00   "2016-11-08"  "2017-10-16"    549.18    95.00]
+}
+
+:investment/fundo #{
+  ;; id                parent             amount   t0                      tf     final     adm               cnpj
+  [:fundo/clipfia      :citigroup/rv     2500.00   "2018-01-01"           nil       nil    1.00   "17453850000148"]
+}
+
+:wallet/hierarchy {
+  :mine {:citigroup [:citigroup/cc :citigroup/rf :citigroup/rv]
+         :sumitomo  [:sumitomo/cc :sumitomo/prev]
+         :jpmorgan  [:jpmorgan/cc]}
+}
+
+:balance/history {
+
+  "2017-08-17"
+  {:sumitomo/cc            936.57
+   :sumitomo/prev          169.40
+   :jpmorgan/cc              0.01
+   :citigroup/cc          1000.00}
+
+  "2017-09-17"
+  {:sumitomo/cc            620.00
+   :sumitomo/prev          171.39
+   :jpmorgan/cc              1.35}
+
+  "2018-07-02"
+  {:cdb/hsbc              1237.51
+   :fundo/clipfia         2438.47}
+
+  "2018-07-09"
+  {:jpmorgan/cc           4666.65
+   :sumitomo/cc            657.33
+   :sumitomo/prev          175.69}
+
+  "2018-07-24"
+  {:fundo/clipfia         2528.78
+   :jpmorgan/cc           3485.36
+   :citigroup/cc          1400.00}
+
+  "2018-07-27"
+  {:sumitomo/cc            659.63
+   :sumitomo/prev          177.28}
+
+  "2018-12-21"
+  {:lc/jpmorgan            622.86
+   :cdb/hsbc2             1016.09
+   :fundo/clipfia         2266.02
+   :sumitomo/cc           1564.49
+   :sumitomo/prev          181.21
+   :jpmorgan/cc           1889.43
+   :citigroup/cc          2028.78}
+
+  "2019-02-27"
+  {:fundo/clipfia         2579.01
+   :lci/ufj2              2018.15
+   :lc/jpmorgan            630.06
+   :cdb/hsbc2             1029.36
+   :jpmorgan/cc           2019.50}
+
+}
+
+}

@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd .. && pwd)"
+source "${ROOT}/scripts/core.sh"
+
+warning "Sending data to Graphite..."
+
+tagged_result="$(curl \
+    -H "Accept: application/json" \
+    -H "Content-Type: application/json" \
+    -X POST \
+    -s \
+    "http://localhost:8080/graphite")"
+
+untagged_result="$(echo -e "$tagged_result" | awk '{sub(/;.*/,"",$1); print}')"
+result="${untagged_result}${tagged_result}"
+
+total="$(echo -e "$result" | wc -l | xargs)"
+i=0
+
+app=""
+echo "$result" | while read line ; do
+   i=$((i+1))
+   app="${app}${line}\n"
+   rem=$((i%1))
+   if [[ $rem -eq "0" ]]; then
+       echo -en "\r${i}/${total}"
+       echo -e "$app" | nc localhost 2003
+       app=""
+   fi
+done
+
+echo
+success "Done sending data to Graphite!"

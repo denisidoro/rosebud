@@ -1,0 +1,16 @@
+node_modules/
+target/
+backup
+out/
+.shadow-cljs
+yarn.lock
+package-lock.json
+.nrepl-port
+*.iml
+.lein-repl-history
+resources/config.edn
+resources/log.edn
+.lein-failures
+logs/
+target/
+.idea

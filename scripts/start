@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd .. && pwd)"
+source "${ROOT}/scripts/core.sh"
+
+cd "$ROOT"
+
+# "${ROOT}/scripts/build-image"
+
+echo
+"${ROOT}/scripts/start-containers"
+
+echo
+warning "Waiting some time for the service to start..."
+sleep 10
+
+echo
+"${ROOT}/scripts/send-to-graphite"

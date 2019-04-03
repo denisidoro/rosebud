@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd .. && pwd)"
+source "${ROOT}/scripts/core.sh"
+
+warning "Start building image..."
+
+cd "$ROOT"
+docker build --tag 'denisidoro/rosebud:latest' .
+
+success "Image builded!"

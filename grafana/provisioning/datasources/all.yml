@@ -1,0 +1,32 @@
+datasources:
+- name: graphite
+  type: graphite
+  orgId: 1
+  access: proxy
+  url: http://graphite:8080
+  password:
+  user:
+  database:
+  basicAuth: false
+  withCredentials:
+  isDefault: true
+  is_default: true
+  jsonData:
+    keepCookies: []
+    tlsSkipVerify: true
+- name: server
+  org_id: 1
+  type: grafana-simple-json-datasource
+  access: direct
+  url: http://localhost:8080
+  password: 
+  user: 
+  database: 
+  basicAuth: false
+  isDefault: false
+  is_default: false
+  jsonData:
+    keepCookies: []
+    tlsSkipVerify: true
+  readOnly: false
+  editable: true
