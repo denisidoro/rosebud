@@ -2,26 +2,23 @@
   (:require [cheshire.core :as json]
             [clojure.edn :as edn]
             [clojure.string :as str]
-            [clojure.walk :as walk]
-            [schema.core :as s]))
+            [clojure.walk :as walk]))
 
-(def string-or-keyword (s/if keyword? s/Keyword s/Str))
-
-(s/defn ^:private replace-char :- s/Keyword
+(defn ^:private replace-char
   ;; Replaces the from character with the to character in s, which can be a String or a Keyword
   ;; Does nothing if s is a keyword that is in the exception set
-  [s :- string-or-keyword, from :- Character, to :- Character, exceptions :- #{s/Keyword}]
+  [s from to exceptions]
   (if (contains? exceptions s)
     s
     (keyword (str/replace (name s) from to))))
 
 (def underscore->dash-exceptions #{})
 
-(s/defn ^:private replace-char-gen :- (s/pred fn?)
+(defn ^:private replace-char-gen
   ;; Will replace dashes with underscores or underscores with dashes for the keywords in a map
   ;; Ignores String values in a map (both keys and values)
-  ([from :- Character, to :- Character] (replace-char-gen from to #{}))
-  ([from :- Character, to :- Character, exceptions :- #{s/Keyword}]
+  ([from to] (replace-char-gen from to #{}))
+  ([from to exceptions]
    #(if (keyword? %) (replace-char % from to exceptions) %)))
 
 (defn dash->underscore [json-doc]
@@ -40,9 +37,9 @@
       underscore->dash
       (json/parse-string true)))
 
-(s/defn read-edn [v :- s/Str]
+(defn read-edn [v]
   (if (string? v) (edn/read-string {:readers *data-readers*} v) v))
 
-(s/defn write-edn :- s/Str
-  [v :- (s/pred coll?)]
+(defn write-edn
+  [v]
   (pr-str v))
