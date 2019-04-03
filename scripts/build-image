@@ -7,6 +7,7 @@ source "${ROOT}/scripts/core.sh"
 warning "Start building image..."
 
 cd "$ROOT"
-docker build --tag 'denisidoro/rosebud:latest' .
+hash=$(git rev-parse --short HEAD)
+docker build --tag 'denisidoro/rosebud:latest' --tag "denisidoro/rosebud:$hash" .
 
 success "Image builded!"

@@ -13,6 +13,11 @@ tagged_result="$(curl \
     -s \
     "http://localhost:8080/graphite")"
 
+if [[ "${1:-}" = "debug" ]]; then
+    echo "$tagged_result"
+    exit 0
+fi
+
 untagged_result="$(echo -e "$tagged_result" | awk '{sub(/;.*/,"",$1); print}')"
 result="${untagged_result}${tagged_result}"
 

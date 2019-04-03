@@ -1,8 +1,8 @@
 FROM clojure:openjdk-8-lein-2.9.1-alpine AS build-env
 WORKDIR /app
-COPY project.clj /app/project.clj
+COPY server/project.clj /app/project.clj
 RUN lein deps
-COPY . /app
+COPY server/ /app
 RUN lein uberjar
 
 FROM openjdk:8-jre-alpine
