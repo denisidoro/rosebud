@@ -4,6 +4,9 @@
 
 A personal financial platform.
 
+![Preview](https://user-images.githubusercontent.com/3226564/55515856-05ffef00-5642-11e9-8fc7-47535535c24e.jpg)
+
+
 ### Running
 
 Simply clone the repository and run 
