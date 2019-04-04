@@ -27,7 +27,6 @@
 (defn ^:private get-log
   []
   (or (read-log "log.edn")
-      (read-log "/app/resources/log.edn")
       (read-log "example_log.edn")))
 
 (defn ^:private error-message

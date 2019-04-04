@@ -38,6 +38,8 @@ services:
     networks:
       - grafana-net
     working_dir: /app
+    volumes:
+      - $PWD/log.edn:/app/resources/log.edn
 
 networks:
   grafana-net:
