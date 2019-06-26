@@ -4,6 +4,7 @@ A personal financial platform.
 
 ![Preview](https://user-images.githubusercontent.com/3226564/55515856-05ffef00-5642-11e9-8fc7-47535535c24e.jpg)
 
+:warning: This repository will receive no further support. I'll continue development in a private repo so that I can faster iterate over it without worrying about exposing personal data. In case you really like this project, please contact me so that we can better coordinate efforts. :warning:
 
 ### Running
 
